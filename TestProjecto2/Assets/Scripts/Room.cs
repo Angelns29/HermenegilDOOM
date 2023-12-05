@@ -13,21 +13,14 @@ public class Room : MonoBehaviour
     
     public void OpenDoor(Vector2Int direction)
     {
-        if (direction == Vector2Int.up)
-        {
-            topDoor.SetActive(true);
-        }
-        if (direction == Vector2Int.down)
-        {
-            bottonDoor.SetActive(true);
-        }
-        if(direction == Vector2Int.left)
-        {
-            leftDoor.SetActive(true);
-        }
-        if(direction == Vector2Int.right){
-            rightDoor.SetActive(true);
-        }
+        if (direction == Vector2Int.up) topDoor.SetActive(true);
+
+        if (direction == Vector2Int.down)bottonDoor.SetActive(true);
+
+        if(direction == Vector2Int.left) leftDoor.SetActive(true);
+
+        if(direction == Vector2Int.right)rightDoor.SetActive(true);
+
     }
 
 }
