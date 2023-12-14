@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Room : MonoBehaviour
@@ -14,7 +15,10 @@ public class Room : MonoBehaviour
     [SerializeField] GameObject bottonWall;
     [SerializeField] GameObject leftWall;
     [SerializeField] GameObject rightWall;
-
+    [Header("Floor")]
+    [SerializeField] GameObject floor1;
+    [SerializeField] GameObject floor4;
+    [DoNotSerialize]public int totalDoors = 0;
     public Vector2Int RoomIndex {  get; set; }
     
     public void OpenDoor(Vector2Int direction)
@@ -23,26 +27,46 @@ public class Room : MonoBehaviour
         {
             topWall.SetActive(false);
             topDoor.SetActive(true);
+            totalDoors++;
         }
 
         if (direction == Vector2Int.down)
         {
             bottonWall.SetActive(false);
             bottonDoor.SetActive(true);
+            totalDoors++;
+
         }
 
         if (direction == Vector2Int.left)
         {
             leftWall.SetActive(false);
             leftDoor.SetActive(true);
+            totalDoors++;
+
         }
 
-        if(direction == Vector2Int.right)
+        if (direction == Vector2Int.right)
         {
             rightWall.SetActive(false);
             rightDoor.SetActive(true);
+            totalDoors++;
+
         }
-
     }
-
+    public void SetFloor()
+    {
+        floor1.SetActive(false);
+        switch (totalDoors)
+        {
+            case 1:
+            case 2:
+            case 3:
+                floor1.SetActive(true);
+                break;
+            case 4:
+                floor4.SetActive(true);
+                break;
+        }
+    }
 }

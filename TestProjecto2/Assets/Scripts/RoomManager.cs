@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour
@@ -71,7 +72,7 @@ public class RoomManager : MonoBehaviour
         {
             return false;
         }
-        if (Random.value < 0.5f && roomIndex != Vector2Int.zero)
+        if (UnityEngine.Random.value < 0.5f && roomIndex != Vector2Int.zero)
         {
             return false;
         }
@@ -133,6 +134,8 @@ public class RoomManager : MonoBehaviour
             newRoomScript.OpenDoor(Vector2Int.up);
             topRoomScript.OpenDoor(Vector2Int.down);
         }
+        newRoomScript.SetFloor();
+        
     }
     Room GetRoomScriptAt(Vector2Int roomIndex)
     {
