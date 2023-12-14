@@ -33,6 +33,7 @@ public class UIManager : MonoBehaviour
     public void DisableStart()
     {
         startMenu.SetActive(false);
+        pauseButton.SetActive(true);
         hud.SetActive(true);
         Time.timeScale = 1f;
         _audioManager.StartMusic();
