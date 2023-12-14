@@ -4,33 +4,57 @@ using UnityEngine;
 
 public class IWillChase : MonoBehaviour
 {
-    public GameObject player;
     public float speed;
+    public float moveRadius;
+    public float exploteRadius;
 
-    private float distance;
-    // Start is called before the first frame update
-    void Start()
+    public bool shouldRotate = true;
+
+    public LayerMask playerLayer;
+
+    private Transform _player;
+    private Rigidbody2D _rb;
+    private Animator _anim;
+    private Vector2 _movement;
+    public Vector3 _direction;
+
+    private bool _isInMoveRadius;
+    private bool _isInExploteRadius;
+
+    private void Start()
     {
-        
+        _rb = GetComponent<Rigidbody2D>();
+        _anim = GetComponent<Animator>();
+        _player = GameObject.FindWithTag("Player").transform;
+
     }
-
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        //Coge la distancia entre el enemigo y el jugador
-        distance = Vector2.Distance(transform.position, player.transform.position);
-        Vector2 direction = player.transform.position - transform.position;
-        direction.Normalize();
-        //Encuentra el angulo entre dos puntos, la multiplicación convierte de radian a grado
-        float angel = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        _anim.SetBool("isMoving", _isInMoveRadius);
 
-        //El condicional sirve para que el enemigo se empiece a mover si el jugador esta a cierta distancia de el
-        if (distance < 4)
+        _isInMoveRadius = Physics2D.OverlapCircle(transform.position, moveRadius, playerLayer);
+        _isInExploteRadius = Physics2D.OverlapCircle(transform.position, exploteRadius, playerLayer);
+
+        _direction = _player.position - transform.position;
+        float angel = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
+        _direction.Normalize();
+        _movement = _direction;
+
+        if (shouldRotate)
         {
-            //Mueve al enemigo hacia el jugador
-            transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
-            //Hace girar al enemigo para estar mirando al enemigo
-            transform.rotation = Quaternion.Euler(Vector3.forward * angel);
+            _anim.SetFloat("Horizontal",_direction.x);
+            _anim.SetFloat("Vertical", _direction.y);
         }
+
     }
+    private void FixedUpdate()
+    {
+        if (_isInMoveRadius && !_isInExploteRadius) MoveCharacter(_movement);
+        if (_isInExploteRadius) _rb.velocity = Vector2.zero;
+    }
+    private void MoveCharacter(Vector2 dir)
+    {
+        _rb.MovePosition((Vector2)transform.position + (dir*speed*Time.deltaTime));
+    }
+
 }
