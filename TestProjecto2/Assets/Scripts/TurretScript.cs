@@ -28,16 +28,15 @@ public class TurretScript : MonoBehaviour
         direction = targetPos  - (Vector2)transform.position;
         RaycastHit2D rayInfo = Physics2D.Raycast(transform.position, direction,range);
     
-        if (rayInfo)
+
+        if ( rayInfo.collider.gameObject.CompareTag("Player"))
         {
-            if ( rayInfo.collider.gameObject.CompareTag("Player"))
-            {
-                if(detected == false)detected = true;
-            }
-            else{
-                if (detected == true) detected = false;
-            }
+            if (detected == false) detected = true;
         }
+        else{
+            if (detected == true) detected = false;
+        }
+
         if (detected)
         {
             transform.up = direction;
