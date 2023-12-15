@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IWillChase : MonoBehaviour
+public class ChaserEnemy : MonoBehaviour
 {
     public float speed;
     public float moveRadius;

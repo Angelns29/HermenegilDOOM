@@ -7,8 +7,6 @@ public class WeaponTemplate : ScriptableObject
 {
     public new string name;
 
-    public Sprite weaponSprite;
-
     public float weaponDamage;
     //Determina que bala dispara esa arma, de esta manera controlaremos lo que hace cada una.
     public string bulletType;
