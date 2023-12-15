@@ -2,16 +2,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IWillChase : MonoBehaviour
+public class ChaserEnemy : MonoBehaviour
 {
+    [SerializeField] private EnemyTemplate chStats;
+
+    private ChaserExplode boom;
     public GameObject player;
     public float speed;
 
     private float distance;
-    // Start is called before the first frame update
-    void Start()
+    
+    private void Start()
     {
-        
+        boom = ChaserExplode.instance;
     }
 
     // Update is called once per frame
@@ -25,12 +28,18 @@ public class IWillChase : MonoBehaviour
         float angel = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
 
         //El condicional sirve para que el enemigo se empiece a mover si el jugador esta a cierta distancia de el
-        if (distance < 4)
+        if (distance <= 6)
         {
             //Mueve al enemigo hacia el jugador
             transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, speed * Time.deltaTime);
             //Hace girar al enemigo para estar mirando al enemigo
             transform.rotation = Quaternion.Euler(Vector3.forward * angel);
+            if (distance <= 2)
+            {
+                //El enemigo explota
+                boom.Kaboom();
+                Debug.Log("A");
+            }
         }
     }
 }
