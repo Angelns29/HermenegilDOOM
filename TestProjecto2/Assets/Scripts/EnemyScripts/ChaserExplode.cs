@@ -8,7 +8,9 @@ public class ChaserExplode : MonoBehaviour
     [DoNotSerialize] public static ChaserExplode instance;
     [SerializeField]private float radio = 3;
 
-    [SerializeField] private float expForce = 33033;
+    [SerializeField] private float expForce = 1945;
+    private Animator _anim;
+    private Rigidbody2D _rb;
 
     void Start()
     {
@@ -19,6 +21,8 @@ public class ChaserExplode : MonoBehaviour
 
         }
         else Destroy(gameObject);
+        _anim = GetComponent<Animator>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     public void Kaboom()
@@ -35,10 +39,16 @@ public class ChaserExplode : MonoBehaviour
                 rb2D.AddForce(direction * finalForce);
             }
         }
+        _rb.velocity = Vector2.zero;
+        _anim.SetTrigger("isBoom");
+        StartCoroutine(GoodBye());
 
+    }
+    IEnumerator GoodBye()
+    {
+        yield return new WaitForSeconds(1);
         Destroy(gameObject);
     }
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

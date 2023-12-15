@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ChaserEnemy : MonoBehaviour
@@ -17,6 +18,7 @@ public class ChaserEnemy : MonoBehaviour
     private Animator _anim;
     private Vector2 _movement;
     public Vector3 _direction;
+    [DoNotSerialize] public ChaserExplode boom;
 
     private bool _isInMoveRadius;
     private bool _isInExploteRadius;
@@ -26,6 +28,7 @@ public class ChaserEnemy : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _player = GameObject.FindWithTag("Player").transform;
+        boom = ChaserExplode.instance;
 
     }
     private void Update()
@@ -50,7 +53,7 @@ public class ChaserEnemy : MonoBehaviour
     private void FixedUpdate()
     {
         if (_isInMoveRadius && !_isInExploteRadius) MoveCharacter(_movement);
-        if (_isInExploteRadius) _rb.velocity = Vector2.zero;
+        if (_isInExploteRadius) boom.Kaboom();
     }
     private void MoveCharacter(Vector2 dir)
     {
