@@ -14,7 +14,13 @@ namespace Inventory.Model
 
         public bool PerformAction(GameObject character)//, List<ItemParameter> itemState = null
         {
-            return true;
+            AgentWeapon weaponSystem = character.GetComponent<AgentWeapon>();
+            if (weaponSystem != null)
+            {
+                weaponSystem.SetWeapon(this);
+                return true;
+            }
+            return false;
         }
         public float weaponDamage;
         //Determina que bala dispara esa arma, de esta manera controlaremos lo que hace cada una.

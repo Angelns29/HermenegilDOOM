@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28ab671bd29be6f48a02b2a9eda01ae7, type: 3}
-  m_Name: Sandra
+  m_Name: Stripper
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
-  <Name>k__BackingField: Sandra
-  <Description>k__BackingField: Sandra
-  <WeaponSprite>k__BackingField: {fileID: -1508033918, guid: 042dc31da414cb04e82f196b18678360, type: 3}
-  weaponDamage: 33
-  bulletType: 0
+  <Name>k__BackingField: Stripper
+  <Description>k__BackingField: Los Pinguinos me la van a mascar
+  <WeaponSprite>k__BackingField: {fileID: -2003423939, guid: 4d0070621e1108244b8a5a4da6431ee6, type: 3}
+  weaponDamage: 24
+  bulletType: 1

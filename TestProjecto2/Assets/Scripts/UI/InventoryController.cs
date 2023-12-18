@@ -4,6 +4,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Inventory
 {
@@ -55,18 +56,42 @@ namespace Inventory
         {
             InventoryItem inventoryItem = _inventoryData.GetItemAt(itemIndex);
             if (inventoryItem.IsEmpty) return;
+            
             IItemAction itemAction = inventoryItem.item as IItemAction;
             if (itemAction != null)
             {
-                itemAction.PerformAction(gameObject);
+                
+                _inventoryUI.ShowItemAction(itemIndex);
+                _inventoryUI.AddAction(itemAction.ActionName, () => PerformAction(itemIndex));
             }
+
+            IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
+            if (destroyableItem != null)
+            {
+                _inventoryUI.AddAction("Drop", () => DropItem(itemIndex, inventoryItem.quantity));
+            }
+        }
+        private void DropItem(int itemIndex,int quantity)
+        {
+            _inventoryData.RemoveItem(itemIndex, quantity);
+            _inventoryUI.ResetSelection();
+        }
+        public void PerformAction(int itemIndex)
+        {
+            InventoryItem inventoryItem = _inventoryData.GetItemAt(itemIndex);
+            if (inventoryItem.IsEmpty) return;
             IDestroyableItem destroyableItem = inventoryItem.item as IDestroyableItem;
             if (destroyableItem != null)
             {
                 _inventoryData.RemoveItem(itemIndex, 1);
             }
+            IItemAction itemAction = inventoryItem.item as IItemAction;
+            if (itemAction != null)
+            {
+                itemAction.PerformAction(gameObject);
+                if (_inventoryData.GetItemAt(itemIndex).IsEmpty || _inventoryData.GetItemAt(itemIndex).item == null) _inventoryUI.ResetSelection();
+            }
         }
-
         private void HandleDragging(int itemIndex)
         {
             InventoryItem inventoryItem = _inventoryData.GetItemAt(itemIndex);
