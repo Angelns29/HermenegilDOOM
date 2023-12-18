@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class IWillChase : MonoBehaviour
+public class BobFollow : MonoBehaviour
 {
     public float speed;
     public float moveRadius;
-    public float exploteRadius;
+    public float stopRadius;
 
     public bool shouldRotate = true;
 
@@ -14,53 +14,36 @@ public class IWillChase : MonoBehaviour
 
     private Transform _player;
     private Rigidbody2D _rb;
-    private Animator _anim;
     private Vector2 _movement;
     public Vector3 _direction;
 
     private bool _isInMoveRadius;
-    private bool _isInExploteRadius;
+    private bool _isInStopRadius;
 
-    private AudioManager _audioManager;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _anim = GetComponent<Animator>();
         _player = GameObject.FindWithTag("Player").transform;
-        _audioManager = AudioManager.instance;
 
     }
     private void Update()
     {
-        _anim.SetBool("isMoving", _isInMoveRadius);
-
         _isInMoveRadius = Physics2D.OverlapCircle(transform.position, moveRadius, playerLayer);
-        _isInExploteRadius = Physics2D.OverlapCircle(transform.position, exploteRadius, playerLayer);
+        _isInStopRadius = Physics2D.OverlapCircle(transform.position, stopRadius, playerLayer);
 
         _direction = _player.position - transform.position;
         float angel = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
         _direction.Normalize();
         _movement = _direction;
-
-        if (shouldRotate)
-        {
-            _anim.SetFloat("Horizontal",_direction.x);
-            _anim.SetFloat("Vertical", _direction.y);
-        }
-
     }
     private void FixedUpdate()
     {
-        if (_isInMoveRadius && !_isInExploteRadius) MoveCharacter(_movement);
-        if (_isInExploteRadius) {
-            _audioManager.PlaySFX(_audioManager.enemyDie);
-            _rb.velocity = Vector2.zero;
-        }
+        if (_isInMoveRadius && !_isInStopRadius) MoveCharacter(_movement);
+        if (_isInStopRadius) _rb.velocity = Vector2.zero;
     }
     private void MoveCharacter(Vector2 dir)
     {
-        _rb.MovePosition((Vector2)transform.position + (dir*speed*Time.deltaTime));
+        _rb.MovePosition((Vector2)transform.position + (dir * speed * Time.deltaTime));
     }
-
 }

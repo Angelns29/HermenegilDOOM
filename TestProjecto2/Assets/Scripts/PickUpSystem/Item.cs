@@ -10,12 +10,13 @@ public class Item : MonoBehaviour
 
     [field: SerializeField] public int Quantity { get; set; }
 
-    //[SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioManager _audioSource;
     [SerializeField] private float _duration = 0.3f;
 
     private void Start()
     {
         GetComponent<SpriteRenderer>().sprite = InventoryItem.WeaponSprite;
+        _audioSource = AudioManager.instance;
     }
     public void DestroyItem()
     {
@@ -25,7 +26,7 @@ public class Item : MonoBehaviour
 
     private IEnumerator AnimateItemPickup()
     {
-        //audioSource.PlaySFX();
+        _audioSource.PlaySFX(_audioSource.collectItems);
         Vector3 startScale = transform.localScale;
         Vector3 endScale = Vector3.zero;
         float currentTime = 0;

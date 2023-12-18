@@ -14,7 +14,9 @@ public class AudioManager : MonoBehaviour
     public AudioClip gameTheme;
     public AudioClip gameOverTheme;
     public AudioClip attack;
-    public AudioClip jump;
+    public AudioClip die;
+    public AudioClip enemyDie;
+    public AudioClip collectItems;
 
 
     void Awake()

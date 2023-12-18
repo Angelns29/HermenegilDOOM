@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 namespace Inventory
 {
@@ -16,12 +17,19 @@ namespace Inventory
 
         public List<InventoryItem> initialItems = new List<InventoryItem>();
 
+        private Keyboard _keyboard;
+
         private void Start()
         {
+            _keyboard = Keyboard.current;
             PrepareUI();
             PrepareInventoryData();
+            
         }
-
+        private void Update()
+        {
+            OpenInventory();
+        }
         private void PrepareInventoryData()
         {
             _inventoryData.Initialize();
@@ -117,10 +125,9 @@ namespace Inventory
             _inventoryUI.UpdateDescription(itemIndex, item.WeaponSprite, item.name, item.Description);
         }
 
-        private void Update()
+        public void OpenInventory()
         {
-            //Cambiar a NewInputSystem
-            if (Input.GetKeyUp(KeyCode.E))
+            if (_keyboard.eKey.isPressed)
             {
                 if (_inventoryUI.isActiveAndEnabled == false)
                 {
