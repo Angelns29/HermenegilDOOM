@@ -32,7 +32,5 @@ public class PlayerMovement : MonoBehaviour
         }
         else _animator.SetBool("isMoving", false);
 
-
-
     }
 }
