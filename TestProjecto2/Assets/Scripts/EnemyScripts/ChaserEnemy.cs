@@ -18,7 +18,7 @@ public class ChaserEnemy : MonoBehaviour
     private Animator _anim;
     private Vector2 _movement;
     public Vector3 _direction;
-    [DoNotSerialize] public ChaserExplode boom;
+    private ChaserExplode boom;
 
     private bool _isInMoveRadius;
     private bool _isInExploteRadius;
@@ -27,12 +27,12 @@ public class ChaserEnemy : MonoBehaviour
 
     private void Start()
     {
+        boom = ChaserExplode.instance;
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _player = GameObject.FindWithTag("Player").transform;
         _audioManager = AudioManager.instance;
-        boom = ChaserExplode.instance;
-
+        
     }
     private void Update()
     {
@@ -57,10 +57,12 @@ public class ChaserEnemy : MonoBehaviour
     {
         if (_isInMoveRadius && !_isInExploteRadius) MoveCharacter(_movement);
         if (_isInExploteRadius) {
+            boom.Kaboom();
             _audioManager.PlaySFX(_audioManager.enemyDie);
             _rb.velocity = Vector2.zero;
+            
         }
-        if (_isInExploteRadius) boom.Kaboom();
+         
     }
     private void MoveCharacter(Vector2 dir)
     {

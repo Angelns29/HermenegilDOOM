@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ChaserExplode : MonoBehaviour
 {
-    [DoNotSerialize] public static ChaserExplode instance;
+    public static ChaserExplode instance;
     [SerializeField]private float radio = 3;
 
     [SerializeField] private float expForce = 1945;
@@ -18,7 +18,6 @@ public class ChaserExplode : MonoBehaviour
         {
             instance = this;
             DontDestroyOnLoad(gameObject);
-
         }
         else Destroy(gameObject);
         _anim = GetComponent<Animator>();
