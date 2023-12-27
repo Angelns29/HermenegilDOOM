@@ -26,7 +26,7 @@ public class RoomManager : MonoBehaviour
         roomGrid = new int[gridSizeX, gridSizeY];
         roomQueue = new Queue<Vector2Int>();
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX/2, gridSizeY/2);
-        RoomGenerator(initialRoomIndex);
+        //RoomGenerator(initialRoomIndex);
     }
     private void Update()
     {
@@ -35,11 +35,26 @@ public class RoomManager : MonoBehaviour
             Vector2Int roomIndex = roomQueue.Dequeue();
             int gridX = roomIndex.x;
             int gridY = roomIndex.y;
-
-            TryGeneratorRoom(new Vector2Int(gridX-1, gridY));
-            TryGeneratorRoom(new Vector2Int(gridX+1, gridY));
-            TryGeneratorRoom(new Vector2Int(gridX, gridY+1));
-            TryGeneratorRoom(new Vector2Int(gridX, gridY-1));
+            if (gridX > 0 && roomGrid[gridX - 1, gridY] == 0)
+            {
+                //No neighbor to the left
+                TryGeneratorRoom(new Vector2Int(gridX - 1, gridY));
+            }
+            if (gridX < gridSizeX - 1 && roomGrid[gridX + 1, gridY] == 0)
+            {
+                //No neighbor to the right
+                TryGeneratorRoom(new Vector2Int(gridX + 1, gridY));
+            }
+            if (gridY > 0 && roomGrid[gridX, gridY - 1] == 0)
+            {
+                //No neighbor below
+                TryGeneratorRoom(new Vector2Int(gridX, gridY - 1));
+            }
+            if (gridY < gridSizeY - 1 && roomGrid[gridX, gridY + 1] == 0)
+            {
+                //No neighbor above
+                TryGeneratorRoom(new Vector2Int(gridX, gridY + 1));
+            }
         }
         else if (roomCount < minRooms)
         {
@@ -134,8 +149,14 @@ public class RoomManager : MonoBehaviour
             newRoomScript.OpenDoor(Vector2Int.up);
             topRoomScript.OpenDoor(Vector2Int.down);
         }
-        newRoomScript.SetFloor();
+        StartCoroutine(AssignFloor(newRoomScript));
         
+        
+    }
+    IEnumerator AssignFloor(Room room)
+    {
+        yield return new WaitForSeconds(0.3f);
+        room.SetFloor();
     }
     Room GetRoomScriptAt(Vector2Int roomIndex)
     {
