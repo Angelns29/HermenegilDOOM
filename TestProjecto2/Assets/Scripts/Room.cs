@@ -17,6 +17,7 @@ public class Room : MonoBehaviour
     [SerializeField] GameObject rightWall;
     [Header("Floor")]
     [SerializeField] GameObject floor1;
+    [SerializeField] GameObject floor2;
     [SerializeField] GameObject floor4;
     [DoNotSerialize]public int totalDoors = 0;
     public Vector2Int RoomIndex {  get; set; }
@@ -60,12 +61,17 @@ public class Room : MonoBehaviour
         switch (totalDoors)
         {
             case 1:
-            case 2:
             case 3:
                 floor1.SetActive(true);
                 break;
+            case 2:
+                floor2.SetActive(true); 
+                break;
             case 4:
                 floor4.SetActive(true);
+                break;
+            default:
+                floor1.SetActive(true);
                 break;
         }
     }
