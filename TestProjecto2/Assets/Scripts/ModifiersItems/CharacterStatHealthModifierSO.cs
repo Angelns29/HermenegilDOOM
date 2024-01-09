@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu]
+[CreateAssetMenu(menuName = "Items/CharacterStatHealtModifier")]
 public class CharacterStatHealthModifierSO : CharacterStatsModifierSO
 {
     public override void AffectCharacter(GameObject character, float val)

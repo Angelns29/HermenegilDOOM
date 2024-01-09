@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Inventory.Model
 {
-    [CreateAssetMenu]
+    [CreateAssetMenu( menuName = "Items/EquipableItem")]
     public class EquipableItemSO : ItemTemplate, IDestroyableItem, IItemAction
     {
         public string ActionName => "Equip";
