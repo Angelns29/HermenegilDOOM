@@ -3,7 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using static UnityEditor.Timeline.TimelinePlaybackControls;
 
 public class NPCDialogSystem : MonoBehaviour
 {
@@ -15,6 +17,7 @@ public class NPCDialogSystem : MonoBehaviour
     public GameObject continueButton;
 
     public GameObject iconInteraction;
+    private PlayerInput _playerInput;
 
     public string[] dialog;
     private int index;
@@ -26,16 +29,17 @@ public class NPCDialogSystem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        _playerInput = GetComponent<PlayerInput>();
         NPCImage.sprite = NPCDialog.NPCSprite;
         NPCName.text = NPCDialog.NPCName;
         dialog = NPCDialog.Dialogs;
         iconInteraction.SetActive(false);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartDialog(InputAction.CallbackContext ctx)
     {
-        if(Input.GetKeyDown(KeyCode.I)&& playerIsClose)
+
+        if (ctx.phase == InputActionPhase.Performed && playerIsClose)
         {
             if (dialogPanel.activeInHierarchy)
             {

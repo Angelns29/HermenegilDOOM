@@ -10,6 +10,19 @@ public class AgentWeapon : MonoBehaviour
 
     [SerializeField] private InventarySO _inventoryData;
 
+    public int Qbullet;
+
+    private SpriteRenderer _sr;
+
+    private void Start()
+    {
+        _sr = GetComponent<SpriteRenderer>();
+    }
+    private void FixedUpdate()
+    {
+        _sr.sprite = _weapon.WeaponSprite;
+        Qbullet = _weapon.bulletQuantity;
+    }
     public void SetWeapon(EquipableItemSO weaponItemSO)
     {
         if (_weapon != null)

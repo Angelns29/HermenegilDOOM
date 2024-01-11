@@ -10,27 +10,30 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D _rb;
     private Animator _animator;
     private Vector2 _movementInput;
+    private PlayerInput _playerInput;
 
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
+        _playerInput = GetComponent<PlayerInput>();
     }
-    private void FixedUpdate()
-    {
-        _rb.velocity = _movementInput*_speed;
 
-    }
-    private void OnMove(InputValue inputValue)
+    public void Move(InputAction.CallbackContext ctx)
     {
-        _movementInput = inputValue.Get<Vector2>();
-        if (_movementInput.x != 0 || _movementInput.y !=0)
+        _movementInput = ctx.ReadValue<Vector2>();
+        if (_movementInput.x != 0 || _movementInput.y != 0)
         {
             _animator.SetFloat("Horizontal", _movementInput.x);
             _animator.SetFloat("Vertical", _movementInput.y);
-            _animator.SetBool("isMoving", true);        
+            _animator.SetBool("isMoving", true);
+            _rb.velocity = _movementInput * _speed;
         }
-        else _animator.SetBool("isMoving", false);
-
+        else
+        {
+            _animator.SetBool("isMoving", false);
+            _rb.velocity = new Vector2(0,0);
+        }
+        
     }
 }

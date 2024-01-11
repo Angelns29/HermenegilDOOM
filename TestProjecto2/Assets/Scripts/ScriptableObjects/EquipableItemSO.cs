@@ -11,9 +11,9 @@ namespace Inventory.Model
 
         public AudioClip actionSFX { get; private set; }
 
-        public bool PerformAction(GameObject character)//, List<ItemParameter> itemState = null
+        public bool PerformAction(GameObject weapon)//, List<ItemParameter> itemState = null
         {
-            AgentWeapon weaponSystem = character.GetComponent<AgentWeapon>();
+            AgentWeapon weaponSystem = weapon.GetComponent<AgentWeapon>();
             if (weaponSystem != null)
             {
                 weaponSystem.SetWeapon(this);
@@ -24,6 +24,8 @@ namespace Inventory.Model
         public float weaponDamage;
         //Determina que bala dispara esa arma, de esta manera controlaremos lo que hace cada una.
         public string bulletType;
+
+        public int bulletQuantity;
     }
 }
 

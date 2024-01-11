@@ -19,3 +19,4 @@ MonoBehaviour:
   <WeaponSprite>k__BackingField: {fileID: -2003423939, guid: 4d0070621e1108244b8a5a4da6431ee6, type: 3}
   weaponDamage: 24
   bulletType: 1
+  bulletQuantity: 5
