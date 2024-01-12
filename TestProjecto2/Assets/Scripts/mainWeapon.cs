@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class mainWeapon : MonoBehaviour
@@ -9,7 +10,7 @@ public class mainWeapon : MonoBehaviour
 
     public Camera weaponCam;
     public Transform spawner;
-    public GameObject bulletPrefab;
+    [NonSerialized] public GameObject bulletPrefab;
 
 
     // Start is called before the first frame update
