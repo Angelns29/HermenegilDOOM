@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 7854432061404028238}
   m_Layer: 0
   m_Name: Jota Luis
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -156,7 +156,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _direction: {x: 0, y: 0, z: 0}
-  boom: {fileID: 0}
 --- !u!114 &7854432061404028238
 MonoBehaviour:
   m_ObjectHideFlags: 0

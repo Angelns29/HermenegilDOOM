@@ -4,11 +4,12 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using UnityEngine.Pool;
 using TMPro;
+using Unity.VisualScripting;
 
 public class TurretScript : MonoBehaviour
 {
     public float range;
-    public Transform Target;
+    [DoNotSerialize] public Transform Target;
     bool detected = false;
     Vector2 direction;
 
@@ -23,6 +24,7 @@ public class TurretScript : MonoBehaviour
     void Start()
     {
         _anim = GetComponent<Animator>();
+        Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
     }
 
     // Update is called once per frame
