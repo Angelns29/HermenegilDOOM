@@ -1,20 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
 public class sandra : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
-    private new Rigidbody2D rb;
+    private new Collider2D coll;
+    private Rigidbody2D enemy;
 
     public Camera weaponCam;
 
     // Start is called before the first frame update
     void Start()
     {
+        enemy = GameObject.FindWithTag("Enemy").GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        rb = GetComponent<Rigidbody2D>();
+        coll = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -43,5 +46,13 @@ public class sandra : MonoBehaviour
         float angel = (Vector3.SignedAngle(Vector3.right, mouseDirection, Vector3.forward) + 360) % 360;
 
         return angel;
+    }
+
+    private void OnCollisionEnter2D(Rigidbody2D enemy)
+    {
+        if (coll.CompareTag("Enemy")) 
+        {
+            enemy.AddForce((transform.position - enemy.transform.position) * -1500, ForceMode2D.Impulse);
+        }
     }
 }
