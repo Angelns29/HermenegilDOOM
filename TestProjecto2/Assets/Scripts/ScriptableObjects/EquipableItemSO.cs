@@ -23,7 +23,8 @@ namespace Inventory.Model
         }
         public float weaponDamage;
         //Determina que bala dispara esa arma, de esta manera controlaremos lo que hace cada una.
-        public string bulletType;
+        public string bulletQuantity;
+        public GameObject bullettype;
     }
 }
 

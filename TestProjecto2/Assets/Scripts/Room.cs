@@ -57,7 +57,7 @@ public class Room : MonoBehaviour
     }
     public void SetFloor()
     {
-        floor1.SetActive(false);
+        if(floor1.activeInHierarchy) floor1.SetActive(false);
         switch (totalDoors)
         {
             case 1:

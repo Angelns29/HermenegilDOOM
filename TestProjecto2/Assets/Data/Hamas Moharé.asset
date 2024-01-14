@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28ab671bd29be6f48a02b2a9eda01ae7, type: 3}
-  m_Name: Stripper
+  m_Name: "Hamas Mohar\xE9"
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
-  <Name>k__BackingField: Stripper
-  <Description>k__BackingField: Los Pinguinos me la van a mascar
-  <WeaponSprite>k__BackingField: {fileID: -2003423939, guid: 4d0070621e1108244b8a5a4da6431ee6, type: 3}
-  weaponDamage: 24
-  bulletQuantity: 3
+  <Name>k__BackingField: "Hamas Mohar\xE9"
+  <Description>k__BackingField: 
+  <WeaponSprite>k__BackingField: {fileID: 2137604900, guid: 9e07541dbf3b53544b5ebd4fd7aa8014, type: 3}
+  weaponDamage: 33
+  bulletQuantity: 15
   bullettype: {fileID: 0}

@@ -18,4 +18,5 @@ MonoBehaviour:
   <Description>k__BackingField: Sandra
   <WeaponSprite>k__BackingField: {fileID: -1508033918, guid: 042dc31da414cb04e82f196b18678360, type: 3}
   weaponDamage: 33
-  bulletType: 0
+  bulletQuantity: 0
+  bullettype: {fileID: 0}
