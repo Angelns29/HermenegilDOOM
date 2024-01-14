@@ -2,26 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
     [Header("Start")]
-    [SerializeField] public GameObject startMenu;
+    public GameObject startMenu;
     [Header("Settings")]
-    [SerializeField] public GameObject settingsMenu;
+    public GameObject settingsMenu;
     public Slider musicSlider;
     public Slider sfxSlider;
     public AudioSource musicSource;
     public AudioSource sfxSource;
     
     [Header("HUD")]
-    [SerializeField] public GameObject hud;
-    [SerializeField] public TMP_Text bulletText;
-    [SerializeField] public AgentWeapon Weapon;
+    public GameObject hud;
+    public TMP_Text bulletText;
+    public AgentWeapon Weapon;
     [Header("Pause")]
-    [SerializeField] public GameObject pauseMenu;
-    [SerializeField] public GameObject pauseButton;
+    public GameObject pauseMenu;
+    public GameObject pauseButton;
+    [Header("Die")]
+    public GameObject dieMenu;
 
     private AudioManager _audioManager;
     // Start is called before the first frame update
@@ -80,6 +83,21 @@ public class UIManager : MonoBehaviour
     {
         bulletText.text = Weapon.Qbullet.ToString();
     }
+    #region die
+    public void Restart()
+    {
+        Scene actualScene = SceneManager.GetActiveScene();
+        dieMenu.SetActive(false);
+        SceneManager.LoadScene(actualScene.name);
+    }
+    public void ReturnFromDie()
+    {
+        dieMenu.SetActive(false);
+        hud.SetActive(false);
+        startMenu.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    #endregion
     #region settings
     public void ChangeToSettings()
     {
