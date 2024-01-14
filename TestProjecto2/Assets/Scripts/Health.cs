@@ -1,9 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Damage;
 
 
-public class Health : MonoBehaviour
+public class Health : MonoBehaviour, IDamageable
 {
     [SerializeField] private float maxHealth = 10;
     [SerializeField] private FloatValueSO currentHealth;
@@ -35,6 +36,14 @@ public class Health : MonoBehaviour
     {
         Debug.Log("Died");
         currentHealth.Value = 1;
+    }
+
+    public void TakeDamage(float health, float damage)
+    {
+        if (health>0) 
+        {
+            health -= damage;
+        }
     }
 }
 

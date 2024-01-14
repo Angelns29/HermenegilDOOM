@@ -2,8 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static Damage;
 
-public class ChaserEnemy : MonoBehaviour
+public class ChaserEnemy : MonoBehaviour, IDamageable
 {
     public float speed;
     public float moveRadius;
@@ -69,4 +70,11 @@ public class ChaserEnemy : MonoBehaviour
         _rb.MovePosition((Vector2)transform.position + (dir*speed*Time.deltaTime));
     }
 
+    public void TakeDamage(float health, float damage) 
+    {
+        if (health > 0)
+        {
+            health -= damage;
+        }
+    }
 }
