@@ -1,21 +1,23 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class mainWeapon : MonoBehaviour
+public class Hamas : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
+    [SerializeField] private float lastBulletShot;
+    [SerializeField] private float bulletCD;
+
     public Camera weaponCam;
-    public Transform spawner;
+    public Transform[] spawners;
     public GameObject bulletPrefab;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        spriteRenderer = GetComponent<SpriteRenderer>(); 
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -36,12 +38,12 @@ public class mainWeapon : MonoBehaviour
 
     private float GetAngelTowardsMouse()
     {
-       Vector3 mouseWorldPos = weaponCam.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 mouseWorldPos = weaponCam.ScreenToWorldPoint(Input.mousePosition);
 
-       //Dirección entre arma y posición del mouse
-       Vector3 mouseDirection = mouseWorldPos - transform.position;
-       //cordenada sin usar
-       mouseDirection.z = 0;
+        //Dirección entre arma y posición del mouse
+        Vector3 mouseDirection = mouseWorldPos - transform.position;
+        //cordenada sin usar
+        mouseDirection.z = 0;
         //Signed angle devuelve el angulo entre dos vectores.
         float angel = (Vector3.SignedAngle(Vector3.right, mouseDirection, Vector3.forward) + 360) % 360;
 
@@ -49,15 +51,18 @@ public class mainWeapon : MonoBehaviour
     }
 
     //Se asegura de si el jugador dispara o no
-    private void ItFires()
+    public void ItFires()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Time.time - lastBulletShot > bulletCD)
         {
-            GameObject bullet = Instantiate(bulletPrefab);
-            bullet.transform.position = spawner.position;
-            bullet.transform.rotation = transform.rotation;
-            Destroy(bullet, 2f);
-
+            foreach (Transform firepoint in spawners)
+            {
+                GameObject bullet = Instantiate(bulletPrefab);
+                bullet.transform.position = firepoint.position;
+                bullet.transform.rotation = firepoint.rotation;
+                lastBulletShot = Time.time;
+                Destroy(bullet, 2f);
+            }
         }
     }
 }
