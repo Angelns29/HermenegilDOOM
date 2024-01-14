@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
 public class Stripper : MonoBehaviour
@@ -12,7 +13,7 @@ public class Stripper : MonoBehaviour
 
     public Camera weaponCam;
     public Transform spawner;
-    public GameObject bulletPrefab;
+    [NonSerialized] public GameObject bulletPrefab;
 
 
     // Start is called before the first frame update
@@ -41,7 +42,7 @@ public class Stripper : MonoBehaviour
     {
        Vector3 mouseWorldPos = weaponCam.ScreenToWorldPoint(Input.mousePosition);
 
-       //Dirección entre arma y posición del mouse
+       //Direcciï¿½n entre arma y posiciï¿½n del mouse
        Vector3 mouseDirection = mouseWorldPos - transform.position;
        //cordenada sin usar
        mouseDirection.z = 0;

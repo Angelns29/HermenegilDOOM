@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,6 +17,8 @@ public class UIManager : MonoBehaviour
     
     [Header("HUD")]
     [SerializeField] public GameObject hud;
+    [SerializeField] public TMP_Text bulletText;
+    [SerializeField] public AgentWeapon Weapon;
     [Header("Pause")]
     [SerializeField] public GameObject pauseMenu;
     [SerializeField] public GameObject pauseButton;
@@ -28,7 +31,10 @@ public class UIManager : MonoBehaviour
         musicSlider.value = musicSource.volume;
         sfxSlider.value = sfxSource.volume;
     }
-
+    private void FixedUpdate()
+    {
+        SetBullets();
+    }
     public void DisableStart()
     {
         startMenu.SetActive(false);
@@ -70,7 +76,10 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0f;
     }
 
-
+    public void SetBullets()
+    {
+        bulletText.text = Weapon.Qbullet.ToString();
+    }
     #region settings
     public void ChangeToSettings()
     {

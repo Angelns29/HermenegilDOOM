@@ -17,19 +17,19 @@ namespace Inventory
 
         public List<InventoryItem> initialItems = new List<InventoryItem>();
 
-        private Keyboard _keyboard;
+        private PlayerInput _playerInput;
 
         private void Start()
         {
-            _keyboard = Keyboard.current;
             PrepareUI();
             PrepareInventoryData();
-            
         }
-        private void Update()
+
+        /*private void Update()
         {
             OpenInventory();
-        }
+        }*/
+        
         private void PrepareInventoryData()
         {
             _inventoryData.Initialize();
@@ -125,9 +125,9 @@ namespace Inventory
             _inventoryUI.UpdateDescription(itemIndex, item.WeaponSprite, item.name, item.Description);
         }
 
-        public void OpenInventory()
+        public void OpenInventory( InputAction.CallbackContext context)
         {
-            if (_keyboard.eKey.isPressed)
+            if (context.phase == InputActionPhase.Performed)
             {
                 if (_inventoryUI.isActiveAndEnabled == false)
                 {
