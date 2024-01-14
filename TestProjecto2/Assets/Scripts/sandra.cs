@@ -7,7 +7,6 @@ using UnityEngine.EventSystems;
 public class sandra : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
-    private new Collider2D coll;
     private Rigidbody2D enemy;
 
     public Camera weaponCam;
@@ -17,7 +16,6 @@ public class sandra : MonoBehaviour
     {
         enemy = GameObject.FindWithTag("Enemy").GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
-        coll = GetComponent<Collider2D>();
     }
 
     // Update is called once per frame
@@ -48,11 +46,12 @@ public class sandra : MonoBehaviour
         return angel;
     }
 
-    private void OnCollisionEnter2D(Rigidbody2D enemy)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (coll.CompareTag("Enemy")) 
+        if (collision.gameObject.CompareTag("Enemy"))
         {
-            enemy.AddForce((transform.position - enemy.transform.position) * -1500, ForceMode2D.Impulse);
+            Vector2 dir = transform.position - collision.gameObject.transform.position;
+            enemy.AddForce(dir * -10, ForceMode2D.Impulse);
         }
     }
 }

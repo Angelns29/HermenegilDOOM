@@ -7,6 +7,9 @@ public class Stripper : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
 
+    [SerializeField] private float lastBulletShot;
+    [SerializeField] private float bulletCD;
+
     public Camera weaponCam;
     public Transform spawner;
     public GameObject bulletPrefab;
@@ -51,13 +54,13 @@ public class Stripper : MonoBehaviour
     //Se asegura de si el jugador dispara o no
     private void ItFires()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && Time.time - lastBulletShot > bulletCD)
         {
             GameObject bullet = Instantiate(bulletPrefab);
             bullet.transform.position = spawner.position;
             bullet.transform.rotation = transform.rotation;
+            lastBulletShot = Time.time;
             Destroy(bullet, 2f);
-
         }
     }
 }

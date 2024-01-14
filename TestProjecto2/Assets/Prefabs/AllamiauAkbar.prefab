@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5589710898216033482}
   - component: {fileID: 6688740143781486016}
   - component: {fileID: 6355052695995861565}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: AllamiauAkbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
