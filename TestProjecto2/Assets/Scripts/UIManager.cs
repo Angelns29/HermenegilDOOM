@@ -7,6 +7,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager instance;
     [Header("Start")]
     public GameObject startMenu;
     [Header("Settings")]
@@ -25,6 +26,8 @@ public class UIManager : MonoBehaviour
     public GameObject pauseButton;
     [Header("Die")]
     public GameObject dieMenu;
+    [Header("GameOver")]
+    public GameObject gameOverMenu;
 
     private AudioManager _audioManager;
     // Start is called before the first frame update
@@ -82,6 +85,11 @@ public class UIManager : MonoBehaviour
     public void SetBullets()
     {
         bulletText.text = Weapon.Qbullet.ToString();
+    }
+    public void SetGameOver()
+    {
+        hud.SetActive(false);
+        gameOverMenu.SetActive(true);
     }
     #region die
     public void Restart()
