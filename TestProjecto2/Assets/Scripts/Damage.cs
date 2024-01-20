@@ -6,6 +6,6 @@ public class Damage : MonoBehaviour
 {
 	public interface IDamageable
 	{
-		void TakeDamage(float health, float damage);
+		void TakeDamage(float damage);
 	}
 }

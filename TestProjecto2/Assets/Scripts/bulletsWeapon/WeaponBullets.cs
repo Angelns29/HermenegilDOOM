@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class WeaponBullet : MonoBehaviour
 {
+    public BulletDamage bullet;
     private new Rigidbody2D rb;
     public float speed = 3;
     // Start is called before the first frame update
@@ -12,8 +13,18 @@ public class WeaponBullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.TryGetComponent<ChaserEnemy>(out ChaserEnemy enemyBoom))
+        {
+            enemyBoom.TakeDamage(bullet.damage);
+        }
+
+        else if(collision.gameObject.TryGetComponent<TurretScript>(out TurretScript enemySt))
+        {
+            //enemySt.TakeDamage(bullet.damage);
+        }
+
         Destroy(gameObject);
     }
 

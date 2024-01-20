@@ -5015,6 +5015,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6072420661807152153, guid: 886a390fa33e16c4da9a9c7742c44091, type: 3}
+      propertyPath: enemyTemplate
+      value: 
+      objectReference: {fileID: 11400000, guid: 8695f69900bcced4aab620a5011da3a9, type: 2}
     - target: {fileID: 7162521923111001091, guid: 886a390fa33e16c4da9a9c7742c44091, type: 3}
       propertyPath: m_Name
       value: Jota Luis
@@ -7735,6 +7739,10 @@ PrefabInstance:
       propertyPath: weaponCam
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 1855645991726345674, guid: 31f35e5225f7b5f45afee3db3bd68d5a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 3405071774314793911, guid: 31f35e5225f7b5f45afee3db3bd68d5a, type: 3}
       propertyPath: m_Name
       value: HamasMohare

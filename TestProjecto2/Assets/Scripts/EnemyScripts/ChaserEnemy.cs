@@ -9,6 +9,7 @@ public class ChaserEnemy : MonoBehaviour, IDamageable
     public float speed;
     public float moveRadius;
     public float exploteRadius;
+    public EnemyTemplate enemyTemplate;
 
     public bool shouldRotate = true;
 
@@ -70,11 +71,13 @@ public class ChaserEnemy : MonoBehaviour, IDamageable
         _rb.MovePosition((Vector2)transform.position + (dir*speed*Time.deltaTime));
     }
 
-    public void TakeDamage(float health, float damage) 
+    public void TakeDamage(float damage) 
     {
-        if (health > 0)
+        enemyTemplate.health -= damage;
+
+        if (enemyTemplate.health <= 0)
         {
-            health -= damage;
+            Destroy(gameObject);
         }
     }
 }

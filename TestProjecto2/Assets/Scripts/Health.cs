@@ -38,11 +38,11 @@ public class Health : MonoBehaviour, IDamageable
         currentHealth.Value = 1;
     }
 
-    public void TakeDamage(float health, float damage)
+    public void TakeDamage(float damage)
     {
-        if (health>0) 
+        if (maxHealth>0) 
         {
-            health -= damage;
+            //currentHealth -= damage / maxHealth;
         }
     }
 }
