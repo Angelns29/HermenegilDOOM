@@ -36,6 +36,16 @@ public class UIManager : MonoBehaviour
         _audioManager = AudioManager.instance;
         musicSlider.value = musicSource.volume;
         sfxSlider.value = sfxSource.volume;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
     private void FixedUpdate()
     {
@@ -81,7 +91,12 @@ public class UIManager : MonoBehaviour
         startMenu.SetActive(true);
         Time.timeScale = 0f;
     }
-
+    public void PlayAgain()
+    {
+        gameOverMenu.SetActive(false);
+        hud.SetActive(true);
+        SceneManager.LoadScene(0);
+    }
     public void SetBullets()
     {
         bulletText.text = Weapon.Qbullet.ToString();

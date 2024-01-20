@@ -17,13 +17,23 @@ public class PlayerMovement : MonoBehaviour
     private UIManager _uiManager;
     private AudioManager _audioManager;
 
-    private void Awake()
+    private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _playerInput = GetComponent<PlayerInput>();
         _uiManager = UIManager.instance;
         _audioManager = AudioManager.instance;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     public void Move(InputAction.CallbackContext ctx)
@@ -52,8 +62,16 @@ public class PlayerMovement : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.name=="NextLevel") {
-            if (SceneManager.GetActiveScene().name == "SampleScene") SceneManager.LoadScene(1);
+            if (SceneManager.GetActiveScene().name == "SampleScene")
+            {
+                SetPlayer();
+                SceneManager.LoadScene(1);
+            }
             else GameOver();
         }
+    }
+    public void SetPlayer()
+    {
+        transform.position = new Vector3(0, 0, 0);
     }
 }
