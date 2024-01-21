@@ -75,7 +75,7 @@ public class TurretScript : MonoBehaviour
     }
     void Shoot()
     {
-        GameObject bullet = TurretPool.SharedInstance.GetPooledObject();
+        GameObject bullet =  GetComponent<TurretPool>().GetPooledObject();
         if (bullet != null)
         {
             bullet.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);

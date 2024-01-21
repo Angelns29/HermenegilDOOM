@@ -27,7 +27,7 @@ public class ChaserEnemy : MonoBehaviour
 
     private void Start()
     {
-        boom = ChaserExplode.instance;
+        boom = GetComponent<ChaserExplode>();
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _player = GameObject.FindWithTag("Player").transform;

@@ -5,16 +5,11 @@ using UnityEngine.Pool;
 
 public class TurretPool : MonoBehaviour
 {
-    public static TurretPool SharedInstance;
     public List<GameObject> pooledObjects;
     public GameObject objectToPool;
     public int amountToPool;
 
-    void Awake()
-    {
-        SharedInstance = this;
 
-    }
 
     void Start()
     {
