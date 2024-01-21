@@ -8,6 +8,7 @@ public class sandra : MonoBehaviour
 {
     private SpriteRenderer spriteRenderer;
     private Rigidbody2D enemy;
+    private float damage;
 
     public Camera weaponCam;
 
@@ -16,6 +17,7 @@ public class sandra : MonoBehaviour
     {
         enemy = GameObject.FindWithTag("Enemy").GetComponent<Rigidbody2D>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        damage = 15f;
     }
 
     // Update is called once per frame
@@ -48,10 +50,16 @@ public class sandra : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.TryGetComponent<ChaserEnemy>(out ChaserEnemy enemyBoom))
         {
+            enemyBoom.TakeDamage(damage);
             Vector2 dir = transform.position - collision.gameObject.transform.position;
             enemy.AddForce(dir * -10, ForceMode2D.Impulse);
+        }
+
+        else if (collision.gameObject.TryGetComponent<TurretScript>(out TurretScript enemySt))
+        {
+            enemySt.TakeDamage(damage);
         }
     }
 }

@@ -129,6 +129,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c8298baa235ee0449a6ed7ada2b01ca9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastBulletShot: 0
+  bulletCD: 3
   weaponCam: {fileID: 0}
   spawner: {fileID: 8694793851351840565}
   bulletPrefab: {fileID: 1924120533880607119, guid: 7fb040b731caa6740afdcfd704948234, type: 3}

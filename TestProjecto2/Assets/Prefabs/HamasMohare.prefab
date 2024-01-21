@@ -162,6 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3922b5441fa14364eaa603fa1186d3d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastBulletShot: 0
+  bulletCD: 0.85
   weaponCam: {fileID: 0}
   spawners:
   - {fileID: 1855645991726345674}

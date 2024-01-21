@@ -13,7 +13,7 @@ public class WeaponBullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
     }
 
-    private void OnCollisionEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(UnityEngine.Collision2D collision)
     {
         if (collision.gameObject.TryGetComponent<ChaserEnemy>(out ChaserEnemy enemyBoom))
         {
@@ -22,7 +22,7 @@ public class WeaponBullet : MonoBehaviour
 
         else if(collision.gameObject.TryGetComponent<TurretScript>(out TurretScript enemySt))
         {
-            //enemySt.TakeDamage(bullet.damage);
+            enemySt.TakeDamage(bullet.damage);
         }
 
         Destroy(gameObject);

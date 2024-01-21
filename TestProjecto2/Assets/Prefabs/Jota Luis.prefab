@@ -151,7 +151,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2
   moveRadius: 4
-  exploteRadius: 1
+  exploteRadius: 0.5
   enemyTemplate: {fileID: 0}
   shouldRotate: 1
   playerLayer:

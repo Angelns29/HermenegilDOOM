@@ -4,9 +4,11 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using UnityEngine.Pool;
 using TMPro;
+using static Damage;
 
-public class TurretScript : MonoBehaviour
+public class TurretScript : MonoBehaviour, IDamageable
 {
+    public EnemyTemplate enemyTemplate;
     public float range;
     public Transform Target;
     bool detected = false;
@@ -18,6 +20,7 @@ public class TurretScript : MonoBehaviour
     public float force;
 
     private Animator _anim;
+
 
     // Start is called before the first frame update
     void Start()
@@ -84,5 +87,15 @@ public class TurretScript : MonoBehaviour
         
 
 
+    }
+
+    public void TakeDamage(float damage)
+    {
+        enemyTemplate.health -= damage;
+
+        if (enemyTemplate.health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
