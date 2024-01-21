@@ -70,7 +70,6 @@ public class NPCDialogSystem : MonoBehaviour
     }
     public void NextLine()
     {
-        continueButton.SetActive(false);
         if (index < dialog.Length-1)
         {
             index++;
@@ -81,6 +80,7 @@ public class NPCDialogSystem : MonoBehaviour
         {
             ZeroText();
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D other)

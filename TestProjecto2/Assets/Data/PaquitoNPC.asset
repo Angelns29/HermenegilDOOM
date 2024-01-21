@@ -15,6 +15,9 @@ MonoBehaviour:
   <NPCSprite>k__BackingField: {fileID: 1069447183, guid: e27c65d3956835642b58e8416cee7198, type: 3}
   <NPCName>k__BackingField: Paquito
   <Dialogs>k__BackingField:
-  - Hola
-  - Insultame y te elimino el System32
-  - "Avisado est\xE1s"
+  - Hola, bienvenido a el castillo de  JavASCript.
+  - "Aqui hay muchas personas como tu, viajero de otro mundo, pero no todos van a
+    ser pac\xEDficos como yo."
+  - "Esquipate bien, en esta habitacion tendr\xE1s lo suficiente para sobrevivir."
+  - "Sobretodo con los demonios ya que explotan y la torretas que hacen mucho da\xF1o."
+  - Cuidate.

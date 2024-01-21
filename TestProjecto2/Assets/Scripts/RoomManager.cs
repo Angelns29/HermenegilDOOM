@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Unity.Mathematics;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class RoomManager : MonoBehaviour
@@ -27,44 +30,57 @@ public class RoomManager : MonoBehaviour
         roomQueue = new Queue<Vector2Int>();
         Vector2Int initialRoomIndex = new Vector2Int(gridSizeX/2, gridSizeY/2);
         //RoomGenerator(initialRoomIndex);
+
+        CreateRooms();
+        SetNextLevelDoor();
     }
-    private void Update()
+    public void CreateRooms()
     {
-        if (roomQueue.Count > 0 && roomCount < maxRooms && !generationComplete)
+        while(generationComplete==false)
         {
-            Vector2Int roomIndex = roomQueue.Dequeue();
-            int gridX = roomIndex.x;
-            int gridY = roomIndex.y;
-            if (gridX > 0 && roomGrid[gridX - 1, gridY] == 0)
+            if (roomQueue.Count > 0 && roomCount < maxRooms && !generationComplete)
             {
-                //No neighbor to the left
-                TryGeneratorRoom(new Vector2Int(gridX - 1, gridY));
+                Vector2Int roomIndex = roomQueue.Dequeue();
+                int gridX = roomIndex.x;
+                int gridY = roomIndex.y;
+                if (gridX > 0 && roomGrid[gridX - 1, gridY] == 0)
+                {
+                    //No neighbor to the left
+                    TryGeneratorRoom(new Vector2Int(gridX - 1, gridY));
+                }
+                if (gridX < gridSizeX - 1 && roomGrid[gridX + 1, gridY] == 0)
+                {
+                    //No neighbor to the right
+                    TryGeneratorRoom(new Vector2Int(gridX + 1, gridY));
+                }
+                if (gridY > 0 && roomGrid[gridX, gridY - 1] == 0)
+                {
+                    //No neighbor below
+                    TryGeneratorRoom(new Vector2Int(gridX, gridY - 1));
+                }
+                if (gridY < gridSizeY - 1 && roomGrid[gridX, gridY + 1] == 0)
+                {
+                    //No neighbor above
+                    TryGeneratorRoom(new Vector2Int(gridX, gridY + 1));
+                }
+                
             }
-            if (gridX < gridSizeX - 1 && roomGrid[gridX + 1, gridY] == 0)
+            else if (roomCount < minRooms)
             {
-                //No neighbor to the right
-                TryGeneratorRoom(new Vector2Int(gridX + 1, gridY));
+                RegenerateRooms();
             }
-            if (gridY > 0 && roomGrid[gridX, gridY - 1] == 0)
+            else if (!generationComplete)
             {
-                //No neighbor below
-                TryGeneratorRoom(new Vector2Int(gridX, gridY - 1));
-            }
-            if (gridY < gridSizeY - 1 && roomGrid[gridX, gridY + 1] == 0)
-            {
-                //No neighbor above
-                TryGeneratorRoom(new Vector2Int(gridX, gridY + 1));
+                Debug.Log($"Generation - {roomCount}");
+                generationComplete = true;
             }
         }
-        else if (roomCount < minRooms)
-        {
-            RegenerateRooms();
-        }
-        else if (!generationComplete)
-        {
-            Debug.Log($"Generation - {roomCount}");
-            generationComplete = true;
-        }
+        
+    }
+    public void SetNextLevelDoor()
+    {
+        Room[] rooms = (Room[])FindObjectsOfType(typeof(Room));
+        rooms[0].OpenFinalDoor();
     }
     private void RoomGenerator(Vector2Int roomIndex)
     {

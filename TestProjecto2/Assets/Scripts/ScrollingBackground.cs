@@ -10,6 +10,11 @@ public class ScrollingBackground : MonoBehaviour
     private Renderer bckRenderer;
     [SerializeField]
     private Transform _followObject;
+
+    private void Start()
+    {
+        _followObject = GameObject.FindGameObjectWithTag("Player").transform;
+    }
     // Update is called once per frame
     void Update()
     {
