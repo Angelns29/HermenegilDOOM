@@ -4,11 +4,12 @@ using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
 using UnityEngine.Pool;
 using TMPro;
+using Unity.VisualScripting;
 
 public class TurretScript : MonoBehaviour, IDamageble
 {
     public float range;
-    public Transform Target;
+    [DoNotSerialize] public Transform Target;
     bool detected = false;
     Vector2 direction;
 
@@ -18,6 +19,7 @@ public class TurretScript : MonoBehaviour, IDamageble
     public float force;
 
     private Animator _anim;
+    private TurretPool _pool;
     public EnemyTemplate enemyTemplate;
     private float currentHP;
     public float damage;
@@ -26,6 +28,8 @@ public class TurretScript : MonoBehaviour, IDamageble
     void Start()
     {
         _anim = GetComponent<Animator>();
+        Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        _pool = GameObject.Find("Turret/Pooler").GetComponent<TurretPool>();
         currentHP = enemyTemplate.health;
         damage = enemyTemplate.damage;
     }
@@ -78,7 +82,7 @@ public class TurretScript : MonoBehaviour, IDamageble
     }
     void Shoot()
     {
-        GameObject bullet = TurretPool.SharedInstance.GetPooledObject();
+        GameObject bullet = _pool.GetPooledObject();
         if (bullet != null)
         {
             bullet.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);

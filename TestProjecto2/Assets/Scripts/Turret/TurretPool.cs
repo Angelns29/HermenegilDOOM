@@ -5,16 +5,11 @@ using UnityEngine.Pool;
 
 public class TurretPool : MonoBehaviour
 {
-    public static TurretPool SharedInstance;
     public List<GameObject> pooledObjects;
     public GameObject objectToPool;
     public int amountToPool;
 
-    void Awake()
-    {
-        SharedInstance = this;
 
-    }
 
     void Start()
     {
@@ -22,7 +17,7 @@ public class TurretPool : MonoBehaviour
         GameObject tmp;
         for (int i = 0; i < amountToPool; i++)
         {
-            tmp = Instantiate(objectToPool);
+            tmp = Instantiate(objectToPool,transform.parent);
             tmp.SetActive(false);
             pooledObjects.Add(tmp);
         }

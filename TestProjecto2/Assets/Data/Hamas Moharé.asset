@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 28ab671bd29be6f48a02b2a9eda01ae7, type: 3}
-  m_Name: Sandra
+  m_Name: "Hamas Mohar\xE9"
   m_EditorClassIdentifier: 
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
-  <Name>k__BackingField: Sandra
-  <Description>k__BackingField: Sandra
-  <WeaponSprite>k__BackingField: {fileID: -1508033918, guid: 042dc31da414cb04e82f196b18678360, type: 3}
+  <Name>k__BackingField: "Hamas Mohar\xE9"
+  <Description>k__BackingField: 
+  <WeaponSprite>k__BackingField: {fileID: 2137604900, guid: 9e07541dbf3b53544b5ebd4fd7aa8014, type: 3}
   weaponDamage: 33
-  bulletQuantity: 0
+  bulletQuantity: 15
   bullettype: {fileID: 0}
