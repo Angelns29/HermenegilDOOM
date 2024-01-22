@@ -19,12 +19,14 @@ public class TurretScript : MonoBehaviour
     public float force;
 
     private Animator _anim;
+    private TurretPool _pool;
 
     // Start is called before the first frame update
     void Start()
     {
         _anim = GetComponent<Animator>();
         Target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
+        _pool = GameObject.Find("Turret/Pooler").GetComponent<TurretPool>();
     }
 
     // Update is called once per frame
@@ -75,7 +77,7 @@ public class TurretScript : MonoBehaviour
     }
     void Shoot()
     {
-        GameObject bullet =  GetComponent<TurretPool>().GetPooledObject();
+        GameObject bullet = _pool.GetPooledObject();
         if (bullet != null)
         {
             bullet.transform.SetPositionAndRotation(shootPoint.position, transform.rotation);

@@ -17,7 +17,7 @@ public class TurretPool : MonoBehaviour
         GameObject tmp;
         for (int i = 0; i < amountToPool; i++)
         {
-            tmp = Instantiate(objectToPool);
+            tmp = Instantiate(objectToPool,transform.parent);
             tmp.SetActive(false);
             pooledObjects.Add(tmp);
         }
