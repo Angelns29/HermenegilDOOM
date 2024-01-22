@@ -170,4 +170,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radio: 3
-  expForce: 445
+  expForce: 0

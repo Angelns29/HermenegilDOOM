@@ -13,6 +13,7 @@ public class Stripper : MonoBehaviour
 
     public Camera weaponCam;
     public Transform spawner;
+    private WeaponBullet bullet;
     [NonSerialized] public GameObject bulletPrefab;
 
 

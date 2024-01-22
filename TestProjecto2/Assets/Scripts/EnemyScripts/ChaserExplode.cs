@@ -7,7 +7,7 @@ public class ChaserExplode : MonoBehaviour
 {
     [SerializeField]private float radio = 3;
 
-    [SerializeField] private float expForce = 1945;
+    [SerializeField] private float expForce = 250;
     private Animator _anim;
     private Rigidbody2D _rb;
 
@@ -27,8 +27,9 @@ public class ChaserExplode : MonoBehaviour
             {
                 Vector2 direction = col.transform.position - transform.position;
                 float distance = 1 + direction.magnitude;
-                float finalForce = expForce * distance;
+                float finalForce = (expForce * distance) / 10;
                 rb2D.AddForce(direction * finalForce);
+                Debug.Log(distance);
             }
         }
         _rb.velocity = Vector2.zero;

@@ -90,9 +90,6 @@ public class TurretScript : MonoBehaviour, IDamageble
             bullet.GetComponent<Rigidbody2D>().AddForce(direction * force);
             
         }
-
-
-        
     }
 
     public void TakeDamage(float damage)

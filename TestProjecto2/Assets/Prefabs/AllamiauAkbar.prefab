@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5589710898216033482}
   - component: {fileID: 6688740143781486016}
   - component: {fileID: 6355052695995861565}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: AllamiauAkbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.006030917, y: 0.010417074}
@@ -161,4 +161,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b030f616a4f1a04c8fe033e7975a52d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 11
