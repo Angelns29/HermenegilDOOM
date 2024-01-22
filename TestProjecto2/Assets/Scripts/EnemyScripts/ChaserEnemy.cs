@@ -27,6 +27,8 @@ public class ChaserEnemy : MonoBehaviour, IDamageable
 
     private AudioManager _audioManager;
 
+    private float currentHP;
+
     private void Start()
     {
         boom = ChaserExplode.instance;
@@ -34,7 +36,8 @@ public class ChaserEnemy : MonoBehaviour, IDamageable
         _anim = GetComponent<Animator>();
         _player = GameObject.FindWithTag("Player").transform;
         _audioManager = AudioManager.instance;
-        
+        currentHP = enemyTemplate.health;
+
     }
     private void Update()
     {
@@ -62,7 +65,6 @@ public class ChaserEnemy : MonoBehaviour, IDamageable
             boom.Kaboom();
             _audioManager.PlaySFX(_audioManager.enemyDie);
             _rb.velocity = Vector2.zero;
-            
         }
          
     }
@@ -73,9 +75,9 @@ public class ChaserEnemy : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage) 
     {
-        enemyTemplate.health -= damage;
+        currentHP -= damage;
 
-        if (enemyTemplate.health <= 0)
+        if (currentHP <= 0)
         {
             Destroy(gameObject);
         }

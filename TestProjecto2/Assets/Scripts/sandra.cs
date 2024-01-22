@@ -52,9 +52,9 @@ public class sandra : MonoBehaviour
     {
         if (collision.gameObject.TryGetComponent<ChaserEnemy>(out ChaserEnemy enemyBoom))
         {
-            enemyBoom.TakeDamage(damage);
             Vector2 dir = transform.position - collision.gameObject.transform.position;
             enemy.AddForce(dir * -10, ForceMode2D.Impulse);
+            enemyBoom.TakeDamage(damage);
         }
 
         else if (collision.gameObject.TryGetComponent<TurretScript>(out TurretScript enemySt))

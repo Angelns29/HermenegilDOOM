@@ -20,12 +20,14 @@ public class TurretScript : MonoBehaviour, IDamageable
     public float force;
 
     private Animator _anim;
+    private float currentHP;
 
 
     // Start is called before the first frame update
     void Start()
     {
         _anim = GetComponent<Animator>();
+        currentHP = enemyTemplate.health;
     }
 
     // Update is called once per frame
@@ -91,9 +93,9 @@ public class TurretScript : MonoBehaviour, IDamageable
 
     public void TakeDamage(float damage)
     {
-        enemyTemplate.health -= damage;
+        currentHP -= damage;
 
-        if (enemyTemplate.health <= 0)
+        if (currentHP <= 0)
         {
             Destroy(gameObject);
         }

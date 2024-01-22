@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: JotaLuis
   m_EditorClassIdentifier: 
   name: JotaLuis
-  health: -60
+  health: 40
   damage: 50
   drops: 0
