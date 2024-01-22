@@ -184,6 +184,7 @@ MonoBehaviour:
   fireRate: 1
   shootPoint: {fileID: 8067828465001760206}
   force: 100
+  enemyTemplate: {fileID: 11400000, guid: e622b310b619f04449fb5089b9a433c4, type: 2}
 --- !u!95 &8154574297973906586
 Animator:
   serializedVersion: 5

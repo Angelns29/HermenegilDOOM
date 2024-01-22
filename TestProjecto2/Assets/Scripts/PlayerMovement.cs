@@ -1,10 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerMovement : MonoBehaviour, IDamageble
 {
     public static PlayerMovement instance;
     [SerializeField] private float _speed;
@@ -16,6 +17,7 @@ public class PlayerMovement : MonoBehaviour
 
     private UIManager _uiManager;
     private AudioManager _audioManager;
+    public float health;
 
     private void Start()
     {
@@ -24,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         _uiManager = UIManager.instance;
         _audioManager = AudioManager.instance;
+        health = 100;
         if (instance == null)
         {
             instance = this;
@@ -73,5 +76,20 @@ public class PlayerMovement : MonoBehaviour
     public void SetPlayer()
     {
         transform.position = new Vector3(0, 0, 0);
+    }
+
+    public void TakeDamage(float damage)
+    {
+        health -= damage;
+        if (health <= 0)
+        {
+            Die();
+        }
+    }
+
+    private void Die()
+    {
+        _uiManager.Die();
+        _audioManager.StopMusic();
     }
 }

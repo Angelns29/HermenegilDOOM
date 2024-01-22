@@ -21,6 +21,8 @@ public class UIManager : MonoBehaviour
     public GameObject hud;
     public TMP_Text bulletText;
     public AgentWeapon Weapon;
+    public Slider healthSlider;
+    private PlayerMovement player;
     [Header("Pause")]
     public GameObject pauseMenu;
     public GameObject pauseButton;
@@ -34,6 +36,7 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         _audioManager = AudioManager.instance;
+        player = GameObject.Find("PlayerV2").GetComponent<PlayerMovement>();
         musicSlider.value = musicSource.volume;
         sfxSlider.value = sfxSource.volume;
         if (instance == null)
@@ -106,7 +109,16 @@ public class UIManager : MonoBehaviour
         hud.SetActive(false);
         gameOverMenu.SetActive(true);
     }
+    public void SetHeath()
+    {
+        healthSlider.value = player.health;
+    }
     #region die
+    public void Die()
+    {
+        hud.SetActive(false);
+        dieMenu.SetActive(true);
+    }
     public void Restart()
     {
         Scene actualScene = SceneManager.GetActiveScene();

@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class ChaserEnemy : MonoBehaviour
+public class ChaserEnemy : MonoBehaviour, IDamageble
 {
     public float speed;
     public float moveRadius;
     public float exploteRadius;
+    public EnemyTemplate enemyTemplate;
 
     public bool shouldRotate = true;
 
@@ -24,6 +25,7 @@ public class ChaserEnemy : MonoBehaviour
     private bool _isInExploteRadius;
 
     private AudioManager _audioManager;
+    private float currentHP;
 
     private void Start()
     {
@@ -32,7 +34,8 @@ public class ChaserEnemy : MonoBehaviour
         _anim = GetComponent<Animator>();
         _player = GameObject.FindWithTag("Player").transform;
         _audioManager = AudioManager.instance;
-        
+        currentHP = enemyTemplate.health;
+
     }
     private void Update()
     {
@@ -69,4 +72,13 @@ public class ChaserEnemy : MonoBehaviour
         _rb.MovePosition((Vector2)transform.position + (dir*speed*Time.deltaTime));
     }
 
+    public void TakeDamage(float damage)
+    {
+        currentHP -= damage;
+
+        if (currentHP <= 0)
+        {
+            Destroy(gameObject);
+        }
+    }
 }

@@ -5,7 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 using UnityEngine.Pool;
 using TMPro;
 
-public class TurretScript : MonoBehaviour
+public class TurretScript : MonoBehaviour, IDamageble
 {
     public float range;
     public Transform Target;
@@ -18,11 +18,16 @@ public class TurretScript : MonoBehaviour
     public float force;
 
     private Animator _anim;
+    public EnemyTemplate enemyTemplate;
+    private float currentHP;
+    public float damage;
 
     // Start is called before the first frame update
     void Start()
     {
         _anim = GetComponent<Animator>();
+        currentHP = enemyTemplate.health;
+        damage = enemyTemplate.damage;
     }
 
     // Update is called once per frame
@@ -81,8 +86,18 @@ public class TurretScript : MonoBehaviour
             bullet.GetComponent<Rigidbody2D>().AddForce(direction * force);
             
         }
+
+
         
+    }
 
+    public void TakeDamage(float damage)
+    {
+        currentHP -= damage;
 
+        if (currentHP <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 }
