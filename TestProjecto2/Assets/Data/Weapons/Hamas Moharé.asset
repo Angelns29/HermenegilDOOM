@@ -15,8 +15,9 @@ MonoBehaviour:
   <IsStackable>k__BackingField: 0
   <MaxStackSize>k__BackingField: 1
   <Name>k__BackingField: "Hamas Mohar\xE9"
-  <Description>k__BackingField: 
+  <Description>k__BackingField: "Escopeta que lanza cabezas de Gatos. \nQue mas puedes
+    pedir?"
   <WeaponSprite>k__BackingField: {fileID: 2137604900, guid: 9e07541dbf3b53544b5ebd4fd7aa8014, type: 3}
   weaponDamage: 33
+  bulletType: {fileID: 0}
   bulletQuantity: 15
-  bullettype: {fileID: 0}
