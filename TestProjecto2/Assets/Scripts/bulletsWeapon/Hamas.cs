@@ -12,7 +12,6 @@ public class Hamas : MonoBehaviour
     public Camera weaponCam;
     public Transform[] spawners;
     public GameObject bulletPrefab;
-    private WeaponBullet bullet;
 
 
     // Start is called before the first frame update
