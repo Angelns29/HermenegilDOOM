@@ -26,7 +26,6 @@ public class PlayerMovement : MonoBehaviour, IDamageble
         _playerInput = GetComponent<PlayerInput>();
         _uiManager = UIManager.instance;
         _audioManager = AudioManager.instance;
-        health = 100;
         if (instance == null)
         {
             instance = this;
@@ -81,6 +80,8 @@ public class PlayerMovement : MonoBehaviour, IDamageble
     public void TakeDamage(float damage)
     {
         health -= damage;
+        _uiManager.SetHeath();
+        Debug.Log(health);
         if (health <= 0)
         {
             Die();

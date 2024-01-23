@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -20,7 +21,7 @@ public class UIManager : MonoBehaviour
     [Header("HUD")]
     public GameObject hud;
     public TMP_Text bulletText;
-    public AgentWeapon Weapon;
+    //public AgentWeapon Weapon;
     public Slider healthSlider;
     private PlayerMovement player;
     [Header("Pause")]
@@ -30,7 +31,6 @@ public class UIManager : MonoBehaviour
     public GameObject dieMenu;
     [Header("GameOver")]
     public GameObject gameOverMenu;
-
     private AudioManager _audioManager;
     // Start is called before the first frame update
     void Start()
@@ -102,7 +102,7 @@ public class UIManager : MonoBehaviour
     }
     public void SetBullets()
     {
-        bulletText.text = Weapon.Qbullet.ToString();
+        bulletText.text = "5"; //Weapon.Qbullet.ToString();
     }
     public void SetGameOver()
     {
@@ -123,8 +123,18 @@ public class UIManager : MonoBehaviour
     {
         Scene actualScene = SceneManager.GetActiveScene();
         dieMenu.SetActive(false);
+        hud.SetActive(true);
+        player.health = 100;
+        player.SetPlayer();
+        ResetHealth();
         SceneManager.LoadScene(actualScene.name);
     }
+
+    public void ResetHealth()
+    {
+        healthSlider.value = 100;
+    }
+
     public void ReturnFromDie()
     {
         dieMenu.SetActive(false);

@@ -151,7 +151,7 @@ MonoBehaviour:
   speed: 2
   moveRadius: 4
   exploteRadius: 1
-  enemyTemplate: {fileID: 0}
+  enemyTemplate: {fileID: 11400000, guid: 910fb7bbd6f995d4ca3b14e93929c94b, type: 2}
   shouldRotate: 1
   playerLayer:
     serializedVersion: 2
@@ -4019,7 +4019,7 @@ MonoBehaviour:
   speed: 2
   moveRadius: 4
   exploteRadius: 1
-  enemyTemplate: {fileID: 0}
+  enemyTemplate: {fileID: 11400000, guid: 910fb7bbd6f995d4ca3b14e93929c94b, type: 2}
   shouldRotate: 1
   playerLayer:
     serializedVersion: 2
@@ -8473,7 +8473,7 @@ MonoBehaviour:
   speed: 2
   moveRadius: 4
   exploteRadius: 1
-  enemyTemplate: {fileID: 0}
+  enemyTemplate: {fileID: 11400000, guid: 910fb7bbd6f995d4ca3b14e93929c94b, type: 2}
   shouldRotate: 1
   playerLayer:
     serializedVersion: 2

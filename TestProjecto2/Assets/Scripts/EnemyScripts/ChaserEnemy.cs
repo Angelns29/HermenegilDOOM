@@ -15,6 +15,7 @@ public class ChaserEnemy : MonoBehaviour, IDamageble
     public LayerMask playerLayer;
 
     private Transform _player;
+    private PlayerMovement _playerGO;
     private Rigidbody2D _rb;
     private Animator _anim;
     private Vector2 _movement;
@@ -26,6 +27,7 @@ public class ChaserEnemy : MonoBehaviour, IDamageble
 
     private AudioManager _audioManager;
     private float currentHP;
+    private float damage;
 
     private void Start()
     {
@@ -33,8 +35,10 @@ public class ChaserEnemy : MonoBehaviour, IDamageble
         _rb = GetComponent<Rigidbody2D>();
         _anim = GetComponent<Animator>();
         _player = GameObject.FindWithTag("Player").transform;
+        _playerGO = GameObject.FindWithTag("Player").GetComponent<PlayerMovement>();
         _audioManager = AudioManager.instance;
         currentHP = enemyTemplate.health;
+        damage = enemyTemplate.damage;
 
     }
     private void Update()
@@ -63,6 +67,7 @@ public class ChaserEnemy : MonoBehaviour, IDamageble
             boom.Kaboom();
             _audioManager.PlaySFX(_audioManager.enemyDie);
             _rb.velocity = Vector2.zero;
+            _playerGO.TakeDamage(damage);
             
         }
          
